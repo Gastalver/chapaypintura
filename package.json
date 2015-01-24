@@ -1,0 +1,27 @@
+{
+  "name": "chapaypintura",
+  "version": "1.0.0",
+  "description": "Modulos necesarios para generar mi entorno de trabajo sobre plantillas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gastalver/chapaypintura.git"
+  },
+  "keywords": [
+    "node.js",
+    "grunt",
+    "bootstrap"
+  ],
+  "author": "Miguel Gastalver",
+  "license": "GNU Public License 2.0",
+  "bugs": {
+    "url": "https://github.com/Gastalver/chapaypintura/issues"
+  },
+  "homepage": "https://github.com/Gastalver/chapaypintura",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
