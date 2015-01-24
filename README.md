@@ -1,2 +1,2 @@
-# mi-grunt-boostrap
-Gruntfile.js personalized to adapt to my way of working when creating a template.
+# chapaypintura
+Mi entorno de diseño, rápidamente desplegado y operativo gracias a grunt. 
