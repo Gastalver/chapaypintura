@@ -1,20 +1,18 @@
 module.exports = function (grunt) {
-  // Carga todas las tareas a partir de los nodos que incluyan la palabra grunt.
+  // Carga todas las tareas a partir de los paquetes de node definidos en package.json que incluyan los patrones.
   require('load-grunt-tasks')(grunt);
-  require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', 'grunt-shell', 'grunt-bower-*']});
-  // Muestra el tiempo que tarda cada tarea.
+  
+  // Muestra el tiempo que tarda cada tarea tras haberla ejecutado.
   require('time-grunt')(grunt);
-  //grunt.loadNpmTasks("grunt-bower-install-simple");
 
-  // Configurasione
+  // Configuraciones
   grunt.initConfig({
     "bower-install-simple": {
         options: {
-            color: true,
-			cwd: "app",
-		}
-		,
-        "prod": {
+			cwd: ".",
+			directory: "app/bower_components"
+		},
+		"prod": {
             options: {
                 production: true
             }
@@ -24,14 +22,18 @@ module.exports = function (grunt) {
                 production: false
             }
         }
-    }
- 
+	},
+	"clean": {
+        app: ["app/styles", "app/bower_components", "app/scripts", "app/fonts"],
+        todo: ["./app"]
+        }
    });
-  
+
+// Borra archivos y carpetas
+grunt.registerTask('limpia', ["clean:app"]);
    
-  
 // Crea los directorios y archivos de trabajo que faltan.
-grunt.registerTask('carpetas', function() {
+grunt.registerTask('carpetiza', function() {
 	
 	var fs=require('fs');
 	fs.mkdir('./app/fonts');
@@ -40,15 +42,9 @@ grunt.registerTask('carpetas', function() {
 	console.log('Carpetas creadas');
 });
 
-// Instala los componentes Bower. Basicamente Bootstrap y JQuery.
-grunt.registerTask("bower-install", [ "bower-install-simple:dev" ]);
-
-grunt.registerTask("inicio", ["carpetas", "bower-install-simple:dev" ]);
-
-grunt.registerTask('escribe', function(){
-	//echo "@import \"../bower_components/bootstrap/less/bootstrap.less\";" > main2.less;
-	console.log("@import \"../bower_components/bootstrap/less/bootstrap.less\";" > borrar.txt) ;
-});
+// Instala las fuentes de los componentes del front-end  con Bower: Bootstrap, JQuery y FontAwesome.
+grunt.registerTask("boweriza", [ "bower-install-simple:dev" ]);
+grunt.registerTask('inicio', ['carpetas','bower-install-simple:dev']);
 
 
   

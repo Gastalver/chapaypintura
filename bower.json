@@ -16,6 +16,8 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.2",
-	"Font-Awesome": "~4.0.3"
+	"Font-Awesome": "~4.0.3",
+	"modernizr": "~2.6.2",
+    "jquery": "~1.9.1"
   }
 }
