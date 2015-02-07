@@ -12,14 +12,14 @@ Mi entorno de diseño, rápidamente desplegado y operativo gracias a grunt.
 Para instalar node.js descargar el ejecutable de instalación directamente desde [nodejs.org](http://nodejs.org). Esto instalará también su gestor de paquetes, npm, que será utilizado para instalar los módulos.
 ### Instalación de grunt-cli
 Para instalar la interface de comandos de Grunt, ejecutar el comando:
-    ```shell
+```shell
     npm install -g grunt-cli
-    ```
+```
 ### Instalación de grunt
 Grunt ha de ser instalado, en primer lugar, globalmente. Para ello, ejecutar el comando:
-    ```shell
+ ```shell
     npm install -g grunt
-    ```
+ ```
 ## Instalación entorno
 ### Clonar el repositorio.
 Puede hacerse por medio del siguiente comando: 
