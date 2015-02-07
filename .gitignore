@@ -27,5 +27,7 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-Bower_components
-./app/bower_components/*
+#Bower_components
+app/bower_components
+app/styles
+
