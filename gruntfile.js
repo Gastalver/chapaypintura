@@ -47,9 +47,43 @@ module.exports = function (grunt) {
 			options:{
 				livereload: true
 			}
-		}	
-	}
-   });
+		},
+		gruntfile: {
+			files:['gruntfile.js'],
+			tasks: ['jshintiza']
+		},
+		autoactualiza: {
+            options: {
+                livereload: 35729
+			},
+			files: [
+				'app/*.html',
+				'app/styles/{,*/}*.css',
+				'app/scripts/{,*/}*.js',
+				'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+			]
+		}
+	},
+    jshint: {
+		gruntfile: ['Gruntfile.js'],
+		todo: ['Gruntfile.js','app/scripts/**/*.js']
+    },
+	connect: {
+		options: {
+			port: 9000,
+			hostname: 'localhost',
+			base : './app',
+			keepalive: false,
+			livereload: 35729
+		},
+		autoactualiza: {
+			options: {
+				open: true,
+				base: ['.tmp','./app']
+			}
+		}
+	}  
+  });
 
 // Borra archivos y carpetas
 grunt.registerTask('limpieza', 'Borra archivos y carpetas regenerables.',["clean:app"]);
@@ -72,7 +106,15 @@ grunt.registerTask('inicializa', 'Despliega el entorno. Es el primer comando a e
 grunt.registerTask('cssiza', ["less:dist"]);
 
 //Vigila si hay cambios   
-grunt.registerTask("vigila",'Vigila si hay cambios en los archivos less, recompila y recarga.',['watch']);
+grunt.registerTask('vigila','Vigila si hay cambios en los archivos less, recompila y recarga.',['watch']);
 
+//Comprueba uso correcto de Javascript
+grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:todo']);
+
+//Crea un servidor http
+grunt.registerTask('httpiza','Inicia un servidor http',['connect']);
+
+//Pruebas para el livereload
+grunt.registerTask('prueba',['httpiza','vigila']);
 
 };
