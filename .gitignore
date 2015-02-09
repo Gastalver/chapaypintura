@@ -27,7 +27,14 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-#Bower_components
+# Bower_components
 app/bower_components
+
+# Contenido generable
 app/styles
+app/scripts
+app/fonts
+
+# Morralla
+app/Thumbs.db
 

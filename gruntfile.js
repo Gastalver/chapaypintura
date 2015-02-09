@@ -82,7 +82,49 @@ module.exports = function (grunt) {
 				base: ['.tmp','./app']
 			}
 		}
-	}  
+	},
+	copy: {
+        dist: {
+            files: [
+            	{
+            	expand: true,
+                dot: true,
+                cwd: './app/bower_components/Font-Awesome/fonts/',
+          		dest: './app/fonts/font-awesome',
+          		src: ['*']
+        		}, 
+        		{
+        		expand: true,
+          		dot: true,
+          		cwd: './app/bower_components/bootstrap/dist/fonts/',
+          		dest: './app/fonts/glyphicons',
+          		src: ['*']
+        		}, 
+        		{
+        		expand: true,
+          		dot: true,
+          		cwd: './app/bower_components/modernizr/',
+          		dest: './app/scripts',
+          		src: ['modernizr.js']
+        		}, 
+        		{
+        		expand: true,
+          		dot: true,
+          		cwd: './app/bower_components/jquery/',
+          		dest: './app/scripts',
+          		src: ['jquery.min.js']
+        		}, 
+        		{
+        		expand: true,
+          		dot: true,
+          		cwd: './app/bower_components/bootstrap/dist/js/',
+          		dest: './app/scripts',
+          		src: ['bootstrap.min.js']
+        		}
+
+        	]
+      	}
+    },
   });
 
 // Borra archivos y carpetas
@@ -100,13 +142,12 @@ grunt.registerTask('carpetiza', 'Crea todas las carpetas necesarias.',function()
 
 // Instala las fuentes de los componentes del front-end  con Bower: Bootstrap, JQuery y FontAwesome.
 grunt.registerTask('boweriza','Instala todos los componentes del front-end via Bower.', [ "bower-install-simple:dev" ]);
-grunt.registerTask('inicializa', 'Despliega el entorno. Es el primer comando a ejecutar.',['carpetiza','boweriza']);
 
 // Transcompila de less a css
-grunt.registerTask('cssiza', ["less:dist"]);
+grunt.registerTask('cssiza','Compila less en css', ["less:dist"]);
 
-//Vigila si hay cambios   
-grunt.registerTask('vigila','Vigila si hay cambios en los archivos less, recompila y recarga.',['watch']);
+//Trasiego de archivos de fuentes, jquery, y js de bootstrap a distribucion.
+grunt.registerTask('trasieguiza','Copia archivos de fuentes a distribucion',['copy:dist']);
 
 //Comprueba uso correcto de Javascript
 grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:todo']);
@@ -114,7 +155,13 @@ grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:t
 //Crea un servidor http
 grunt.registerTask('httpiza','Inicia un servidor http',['connect']);
 
-//Pruebas para el livereload
-grunt.registerTask('prueba',['httpiza','vigila']);
+//Vigila si hay cambios, recompila less, comprueba js, y recarga htpp   
+grunt.registerTask('vigila','Vigila si hay cambios en los archivos less, recompila y recarga.',['watch']);
+
+grunt.registerTask('inicializa', 'Despliega el entorno. Es el primer comando a ejecutar.',['limpieza','carpetiza','boweriza','cssiza','trasieguiza','dale']);
+
+//Tarea para seguir trabajando.
+grunt.registerTask('dale','Una vez inicializado el entorno, para volver a ponerlo en marcha',['httpiza:autoactualiza','vigila']);
+
 
 };
