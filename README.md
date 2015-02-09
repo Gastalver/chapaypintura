@@ -27,6 +27,8 @@ Puede hacerse por medio del siguiente comando:
 ```shell
     git clone https://github.com/Gastalver/chapaypintura.git
 ```
+Si se va crear un nuevo trabajo hay que editar .gitignore para incluir, si fuera necesario, las carpetas app/scripts y fonts, ya que estan excluidas por defecto.
+
 
 ### Instalar dependencias
 Para instalar los paquetes de node.js ejecutar:
@@ -39,8 +41,16 @@ Finalmente ejecutar:
 ```shell
     grunt inicializar
 ```
+
 ## Tareas disponibles
 Para ver las tareas automatizadas disponibles ejecutar:
 ```shell
     grunt --help
 ```
+### Para reanudar el trabajo
+```shell
+    grunt dale
+```
+
+
+
