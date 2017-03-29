@@ -1,11 +1,14 @@
 # Chapaypintura
 Mi entorno de diseño, rápidamente desplegado y operativo gracias a grunt.
+## Descripción
+Entorno de diseño de vistas (chapa y pintura) con Bootstrap 4, automatizado con GRUNT.
+
 
 ## Requisitos
 * node.js
 * grunt-cli
 * grunt (global y local)
-* bower (global)
+
 
 ## Instalación requisitos
 ### Instalación de node.js
@@ -30,7 +33,7 @@ Puede hacerse por medio del siguiente comando:
 Si se va crear un nuevo trabajo hay que editar .gitignore para incluir, si fuera necesario, las carpetas app/scripts y fonts, ya que estan excluidas por defecto.
 
 
-### Instalar dependencias
+### Instalar dependencias (node modules)
 Para instalar los paquetes de node.js ejecutar:
 
 ```shell
@@ -41,7 +44,13 @@ Finalmente ejecutar:
 ```shell
     grunt inicializar
 ```
-
+* Crea la estructura de carpetas:
+```shell
+    /src         //-> Source. 
+    /src/less/   //-> Fuentes LESS
+    /dist        //-> Distribution. Resultado final
+```
+* Copia los archivos fuente LESS de Bootstrap, Font-Awesome, etc...
 ## Tareas disponibles
 Para ver las tareas automatizadas disponibles ejecutar:
 ```shell
