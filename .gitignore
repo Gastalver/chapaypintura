@@ -38,3 +38,7 @@ app/fonts
 # Morralla
 app/Thumbs.db
 
+.idea/workspace.xml
+src/
+
+dist/assets/

@@ -44,13 +44,21 @@ Finalmente ejecutar:
 ```shell
     grunt inicializar
 ```
-* Crea la estructura de carpetas:
+* Por defecto crea la siguiente estructura de carpetas:
 ```shell
-    /src         //-> Source. 
-    /src/less/   //-> Fuentes LESS
-    /dist        //-> Distribution. Resultado final
+    /src                    //-> Source. 
+    /src/font-awesome/scss  //-> Fuentes SASS (FontAwesome)
+    /src/bootstrap4/scss    //-> Fuentes SASS (Bootstrap)
+    /dist                   //-> Distribution. Resultado final
+    /dist/assets            //-> Igual estructura que @angular-cli
+    /dist/styles            //-> CSS
+    /dist/js                //-> Archivos javascript
+    /dist/fonts             //-> Fuentes
+    /dist/img               //-> Imágenes
 ```
-* Copia los archivos fuente LESS de Bootstrap, Font-Awesome, etc...
+* Copia a /dist las versiones para distribución -minificadas- de Boostrap4, FontAwesome y jQuery para que esten operativas desde el principio.
+* Copia a /scr las fuentes SASS y JS de Boostrap4 y FontAwesome
+*
 ## Tareas disponibles
 Para ver las tareas automatizadas disponibles ejecutar:
 ```shell
