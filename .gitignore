@@ -42,3 +42,6 @@ app/Thumbs.db
 src/
 
 dist/assets/
+!/dist/assets/css/custom.css
+!/dist/assets/img/favicon.ico
+!/dist/assets/js/ie10-viewport-bug-workaround.js

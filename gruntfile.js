@@ -73,11 +73,11 @@ module.exports = function (grunt) {
         assets: {
             files: [
             	{ // Font-Awesome fonts
-            	expand: true,
-                dot: true,
-                cwd: './node_modules/font-awesome/fonts/',
-          		dest: './dist/assets/fonts/',
-          		src: ['*']
+            	    expand: true,
+                    dot: true,
+                    cwd: './node_modules/font-awesome/fonts/',
+          		    dest: './dist/assets/fonts/',
+          		    src: ['*']
         		},
                 { // Font-Awesome css
                     expand: true,
@@ -94,11 +94,11 @@ module.exports = function (grunt) {
                     src: ['*']
                 },
         		{
-        		expand: true, // Bootstrap css
-          		dot: true,
-          		cwd: './node_modules/bootstrap/dist/css/',
-          		dest: './dist/assets/css',
-          		src: ['bootstrap.min.css']
+        		    expand: true, // Bootstrap css
+          		    dot: true,
+          		    cwd: './node_modules/bootstrap/dist/css/',
+          		    dest: './dist/assets/css',
+          		    src: ['bootstrap.min.css']
         		},
                 {
                 	expand: true, // Bootstrap js
@@ -110,14 +110,14 @@ module.exports = function (grunt) {
                 {
                     expand: true, // JQuery
                     dot: true,
-                    cwd: './node_modules/bootstrap/node_modules/jquery/dist/',
+                    cwd: './node_modules/jquery/dist/',
                     dest: './dist/assets/js',
                     src: ['jquery.min.js']
                 },
                 {
                     expand: true, // Theter
                     dot: true,
-                    cwd: './node_modules/bootstrap/node_modules/tether/dist/js',
+                    cwd: './node_modules/tether/dist/js',
                     dest: './dist/assets/js',
                     src: ['tether.min.js']
                 },
@@ -137,7 +137,7 @@ module.exports = function (grunt) {
                 }
         	]
       	}
-    },
+    }
   });
 
 // Borra archivos y carpetas
