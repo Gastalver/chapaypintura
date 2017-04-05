@@ -34,6 +34,13 @@ module.exports = function (grunt) {
 				livereload: true
 			}
 		},
+        less: {
+            files:['src/bootstrap4/scss/less/**/*.less'],
+            tasks:'cssiza',
+            options:{
+                livereload: true
+            }
+        },
 		gruntfile: {
 			files:['gruntfile.js'],
 			tasks: ['jshintiza']
@@ -52,7 +59,7 @@ module.exports = function (grunt) {
 	},
     jshint: { // Revisa sintaxis
 		gruntfile: ['Gruntfile.js'],
-		todo: ['Gruntfile.js','app/scripts/**/*.js']
+		assets: ['Gruntfile.js','src/bootstrap4/js/*.js']
     },
 	connect: {  // Crea un servidor.
 		options: {
@@ -170,7 +177,7 @@ grunt.registerTask('cssiza','Compila less en css', ["less:dist"]);
 grunt.registerTask('trasieguiza','Copia archivos de fuentes a distribucion',['copy:assets']);
 
 //Comprueba uso correcto de Javascript
-grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:todo']);
+grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:assets']);
 
 //Crea un servidor http
 grunt.registerTask('httpiza','Inicia un servidor http',['connect']);
