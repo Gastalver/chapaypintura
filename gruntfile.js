@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 
 	// Carga todas las tareas a partir de los paquetes de node definidos en package.json que incluyan los patrones.
   require('load-grunt-tasks')(grunt);
-  
+
   // Muestra el tiempo que tarda cada tarea tras haberla ejecutado.
   require('time-grunt')(grunt);
 
@@ -79,25 +79,18 @@ module.exports = function (grunt) {
 	copy: { // Copia archivos.
         assets: {
             files: [
-            	{ // Font-Awesome fonts
+            	{ // Font-Awesome webfonts
             	    expand: true,
                     dot: true,
-                    cwd: './node_modules/font-awesome/fonts/',
-          		    dest: './dist/assets/fonts/',
+                    cwd: './node_modules/@fortawesome/fontawesome-free/webfonts/',
+          		    dest: './dist/assets/fontawesome/',
           		    src: ['*']
         		},
                 { // Font-Awesome css
                     expand: true,
                     dot: true,
-                    cwd: './node_modules/font-awesome/css/',
-                    dest: './dist/assets/css/',
-                    src: ['font-awesome.min.css']
-                },
-                { // Font-Awesome css SOURCE
-                    expand: true,
-                    dot: true,
-                    cwd: './node_modules/font-awesome/scss/',
-                    dest: './src/font-awesome/scss',
+                    cwd: './node_modules/@fortawesome/fontawesome-free/css/',
+                    dest: './dist/assets/fontawesome/',
                     src: ['*']
                 },
         		{
@@ -149,7 +142,7 @@ module.exports = function (grunt) {
 
 // Borra archivos y carpetas
 grunt.registerTask('limpieza', 'Borra archivos y carpetas regenerables.',["clean:assetsTodo"]);
-   
+
 // Crea los directorios y archivos de trabajo que faltan.
 grunt.registerTask('carpetiza-Assets', 'Crea todas las carpetas necesarias.',function() {
 
@@ -182,7 +175,7 @@ grunt.registerTask('jshintiza','Comprueba uso correcto de javascript',['jshint:a
 //Crea un servidor http
 grunt.registerTask('httpiza','Inicia un servidor http',['connect']);
 
-//Vigila si hay cambios, recompila less, comprueba js, y recarga htpp   
+//Vigila si hay cambios, recompila less, comprueba js, y recarga htpp
 grunt.registerTask('vigila','Vigila si hay cambios en los archivos less, recompila y recarga.',['watch']);
 
 grunt.registerTask('inicializa', 'Despliega el entorno. Es el primer comando a ejecutar.',['limpieza','carpetiza-Assets','trasieguiza','dale']);
