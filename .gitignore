@@ -1,3 +1,7 @@
+# Webstorm IDE
+.idea/
+
+
 # Logs
 logs
 *.log
