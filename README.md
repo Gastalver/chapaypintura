@@ -8,6 +8,7 @@ Entorno de diseño de vistas (chapa y pintura) con Bootstrap 4, automatizado con
 * node.js
 * grunt-cli
 * grunt (global y local)
+* sass (global)
 
 
 ## Instalación requisitos
@@ -23,6 +24,11 @@ Grunt ha de ser instalado, en primer lugar, globalmente. Para ello, ejecutar el 
  ```shell
     npm install -g grunt
  ```
+### Instalación de sass
+Para instalar sass globalmente, ejecutar el comando:
+```shell
+    npm install -g sass
+```
 ## Instalación entorno
 ### Clonar el repositorio.
 Puede hacerse por medio del siguiente comando: 
@@ -30,8 +36,6 @@ Puede hacerse por medio del siguiente comando:
 ```shell
     git clone https://github.com/Gastalver/chapaypintura.git
 ```
-Si se va crear un nuevo trabajo hay que editar .gitignore para incluir, si fuera necesario, las carpetas app/scripts y fonts, ya que estan excluidas por defecto.
-
 
 ### Instalar dependencias (node modules)
 Para instalar los paquetes de node.js ejecutar:
@@ -44,21 +48,14 @@ Finalmente ejecutar:
 ```shell
     grunt inicializar
 ```
-* Por defecto crea la siguiente estructura de carpetas:
+* Por defecto tenemos la siguiente estructura de carpetas:
 ```shell
-    /src                    //-> Source. 
-    /src/font-awesome/scss  //-> Fuentes SASS (FontAwesome)
-    /src/bootstrap4/scss    //-> Fuentes SASS (Bootstrap)
-    /dist                   //-> Distribution. Resultado final
-    /dist/assets            //-> Igual estructura que @angular-cli
-    /dist/styles            //-> CSS
-    /dist/js                //-> Archivos javascript
-    /dist/fonts             //-> Fuentes
-    /dist/img               //-> Imágenes
+    /src                    //-> Source. Código fuente para personalizar Bootstrap 
+    /src/custom.scss        //-> Fuentes SASS (Bootstrap)
+    /dist                   //-> Distribution. Resultado final para producción
+    /dist/custom.css        //-> Hoja de estilos Bootstrap personalizada
 ```
-* Copia a /dist las versiones para distribución -minificadas- de Boostrap4, FontAwesome y jQuery para que esten operativas desde el principio.
-* Copia a /scr las fuentes SASS y JS de Boostrap4 y FontAwesome
-*
+Además tenemos un archivo index.html que importa directamente del CDN oficinal el paquete de Javascript de Bootstrap. Más adelante ya veremos si añadimos herramientas para generar un paquete de javascript que sólo contenga lo que vamos a utilizar.
 ## Tareas disponibles
 Para ver las tareas automatizadas disponibles ejecutar:
 ```shell
