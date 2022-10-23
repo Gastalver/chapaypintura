@@ -6,90 +6,108 @@ module.exports = function (grunt) {
   // Muestra el tiempo que tarda cada tarea tras haberla ejecutado.
   require('time-grunt')(grunt);
 
-  // Configuraciones
+  // Configuración
   grunt.initConfig({
 
-	  copy: { // Copia archivos.
-		  fa: {
-			  files: [
-				  { // Font-Awesome webfonts
-					  expand: true,
-					  dot: true,
-					  cwd: './node_modules/@fortawesome/fontawesome-free/webfonts/',
-					  dest: './dist/assets/fontawesome/',
-					  src: ['*']
-				  },
-				  { // Font-Awesome css
-					  expand: true,
-					  dot: true,
-					  cwd: './node_modules/@fortawesome/fontawesome-free/css/',
-					  dest: './dist/assets/fontawesome/',
-					  src: ['*']
-				  },
-				  ]
-		  }
-	  },
 
-      'dart-sass': { // Compila scss a css
-          target: {
+	  // Compila scss a css
+	  'dart-sass': {
+          custom: {
               options: {
 				  // outputStyle: 'compressed'
 			  },
               files: {
-				  'dist/assets/css/custom.css': 'src/scss/custom.scss'
+				  'assets/css/custom.css': 'src/scss/custom.scss'
 			  }
           }
       },
 
-	  watch: { // Ejecuta una tarea cuando detecta un cambio en un archivo.
+	  // Ejecuta una tarea cuando detecta un cambio en un archivo.
+	  watch: {
 
-		  configFiles:{
-			files: ['gruntfile.js'],
-			tasks: 'jshint:gruntfile'
+		  // Compila SCSS a CSS si cambia archivo custom.scss
+		  scssFile: {
+			files: 'src/scss/custom.scss',
+			tasks:'dart-sass:custom',
 		  },
 
-		  scss: {
-			files:['./src/scss/custom.scss'],
-			tasks:'dart-sass:target',
-			options:{ spawn: false}
+		  // Revisa código si cambia archivo gruntfile.js
+		  gruntFile:{
+			  files: 'gruntfile.js',
+			  tasks: 'jshint:gruntFile'
 		  },
 
-		  dist: {
-			files: [
-				'./*.html',
-				'./dist/assets/css/*.css',
-				'./dist/assets/javascript/*.js',
-				'./dist/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-			],
-			options: {
-				livereload: true
-			}
-		}
+		  // Recarga servidor si cambian archivos dist (html,css).
+		  autoactualiza: {
+			  options: {
+				  livereload: 35729
+			  },
+			  files: [
+				  'dist/*.html',
+				  'dist/assets/css/*.css',
+			  ]
+		  }
 	},
 
-	  jshint: { // Revisa sintaxis
-		gruntfile: ['gruntfile.js'],
+	  // Ejecuta análisis javascript
+	  jshint: {
+		// Si cambia archivo de configuración de grunt.
+		gruntFile: ['gruntfile.js'],
+		// TODO: Si cambian archivos javascript de la fuente o la distribución
 		javascript: []
     },
 
-	  'connect': {  // Crea un servidor.
-		options: {
-			port: 9000,
-			hostname: 'localhost',
-			base : './dist',
-			keepalive: false,
-			livereload: 35729
-		},
-		autoActualiza: {
-			options: {
-				open: true,
-				base: ['.tmp','./dist']
-			}
-		}
-	}
+	  // Crea un servidor local	http
+	  connect: {
+		  options: {
+			  port: 9000,
+			  hostname: 'localhost',
+			  base : './dist',
+			  keepalive: false,
+			  livereload: 35729
+		  },
+		  autoactualiza: {
+			  options: {
+				  open: true,
+				  base: ['.tmp','./dist']
+			  }
+		  }
+	},
+
+	  // Copia archivos de fontawesome (fa)
+	  copy: {
+		  fa: {
+			  files: [
+				  {
+					  // Font-Awesome webfonts
+					  expand: true,
+					  dot: true,
+					  cwd: './node_modules/@fortawesome/fontawesome-free/webfonts/',
+					  dest: 'dist/assets/fontawesome/',
+					  src: ['*']
+				  },
+				  {
+					  // Font-Awesome css
+					  expand: true,
+					  dot: true,
+					  cwd: './node_modules/@fortawesome/fontawesome-free/css/',
+					  dest: 'dist/assets/fontawesome/',
+					  src: ['*']
+				  },
+			  ]
+		  }
+	  },
+
   });
 
+// TAREAS
+
+//Arranque del entorno.
+grunt.registerTask('Start','Inicia el entorno',['connect','watch']);
+};
+
 // Crea los directorios y archivos de trabajo que faltan.
+
 // grunt.registerTask('carpetiza-Assets', 'Crea todas las carpetas necesarias.',function() {
 //
 // 	    var fs = require('fs');
@@ -105,7 +123,3 @@ module.exports = function (grunt) {
 //     	fs.mkdir('./src/font-awesome/scss');
 // 	console.log('Carpetas creadas');
 // });
-
-//Arranque del entorno.
-grunt.registerTask('Start','Inicia el entorno',['connect','watch']);
-};
